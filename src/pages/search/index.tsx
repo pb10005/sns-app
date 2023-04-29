@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Head from "next/head";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Sidebar, PostForm, PostCard } from "../../components";
@@ -55,7 +55,7 @@ const Search: NextPage = () => {
     await deleteMutation.mutateAsync({ postId: id });
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await utils.timeline.searchTimeline.invalidate();
   };
