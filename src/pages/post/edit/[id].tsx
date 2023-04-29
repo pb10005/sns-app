@@ -23,9 +23,9 @@ const EditPost: NextPage = () => {
 
   // No. 9 タイムライン編集
   const sendMutation = api.timeline.edit.useMutation({
-    onSuccess() {
-        utils.timeline.getById.invalidate();
-        router.push("/");
+    async onSuccess() {
+        await utils.timeline.getById.invalidate();
+        await router.push("/");
     },
   });
 
@@ -44,7 +44,7 @@ const EditPost: NextPage = () => {
         </section>
         <section className="col-span-9">
           {isSuccess && (
-            <PostForm defaultContent={content} onSendPost={onSendPost} />
+            <PostForm defaultContent={content} onSendPost={content => void onSendPost(content)} />
           )}
         </section>
       </main>

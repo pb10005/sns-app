@@ -26,15 +26,15 @@ const Profile: NextPage = () => {
 
     // No. 5 フォロー
     const followMutation = api.following.create.useMutation({
-        onSuccess() {
-            utils.profile.show.invalidate();
+        async onSuccess() {
+            await utils.profile.show.invalidate();
         }
     });
 
     // No. 6 フォロー解除
     const unFollowMutation = api.following.delete.useMutation({
-        onSuccess() {
-            utils.profile.show.invalidate();
+        async onSuccess() {
+            await utils.profile.show.invalidate();
         }
     });
 
@@ -75,8 +75,8 @@ const Profile: NextPage = () => {
                             isPublic={profile?.isPublic || false}
                             isMyProfile={profile?.userId === sessionData?.user.id}
                             isFollowing={profile?.user.followers.some(f => f.followerId === sessionData?.user.id)}
-                            follow={follow}
-                            unFollow={unFollow}
+                            follow={() => void follow()}
+                            unFollow={() => void unFollow()}
                         />
                     </>}
                 </section>

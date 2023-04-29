@@ -13,8 +13,8 @@ const EditProfile: NextPage = () => {
   });
 
   const sendMutation = api.profile.upsert.useMutation({
-    onSuccess() {
-      router.push("/profile");
+    async onSuccess() {
+      await router.push("/profile");
     },
   });
 
@@ -40,7 +40,7 @@ const EditProfile: NextPage = () => {
               defaultNickname={profile?.nickname}
               defaultBio={profile?.bio || ""}
               defaultPublic={profile?.isPublic}
-              onSendProfile={onSendProfile}
+              onSendProfile={(nickname: string, bio: string, isPublic: boolean) => void onSendProfile(nickname, bio, isPublic)}
             />
           )}
         </section>

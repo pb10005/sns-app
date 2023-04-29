@@ -51,8 +51,8 @@ const Home: NextPage = () => {
     },
   });
 
-  const reload = () => {
-    utils.timeline.showUserTimeline.invalidate();
+  const reload = async () => {
+    await utils.timeline.showUserTimeline.invalidate();
   };
 
   const sendPost = async (content: string) => {

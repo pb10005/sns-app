@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { FormEvent, useState } from "react";
+import { type FormEvent, useState } from "react";
 import Head from "next/head";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Sidebar, PostForm, PostCard } from "../../components";
@@ -73,7 +73,7 @@ const Search: NextPage = () => {
         </section>
         <section className="col-span-9">
           <div className="flex flex-col divide-y">
-            <form onSubmit={onSubmit} className="my-2 mx-1">
+            <form onSubmit={(e) => void onSubmit(e)} className="my-2 mx-1">
               <input
                 className="w-full rounded-full bg-gray-200 p-2"
                 placeholder="投稿を検索"
